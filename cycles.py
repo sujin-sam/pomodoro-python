@@ -19,11 +19,18 @@ def startCycles(cycleCount, activityList, activityTimeList):
             activityVoice.playAudio(activityList[i] + " for Cycle " + str(cycle) + " starts, " + boostWords)
 
             while time:
-                mins, secs = divmod(time, 60)
-                timer = '{:02d}:{:02d}'.format(mins, secs)
-                print(timer, end="\r")
-                timeLib.sleep(1)
-                time -= 1
+                try:
+                    mins, secs = divmod(time, 60)
+                    timer = '{:02d}:{:02d}'.format(mins, secs)
+                    print(timer, end="\r")
+                    timeLib.sleep(1)
+                    time -= 1
+                except KeyboardInterrupt:
+                    activityVoice.playAudio(activityList[i] + " for Cycle " + str(cycle) + " is paused")
+                    activityVoice.playAudio("press ENTER to resume or ctrl+c to exit...")
+                    key = input()
+                    activityVoice.playAudio(activityList[i] + " for Cycle " + str(cycle) + " is resumed")
+                    continue
             
             activityVoice.playAudio(activityList[i] + " for Cycle " + str(cycle) + " is completed")
         
