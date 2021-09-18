@@ -1,7 +1,15 @@
 # what is it
-a pomodoro app build in python
+a pomodoro app built in python
 
-# Run
+## Run
 ```bash
 python pomodoro.py
+```
+
+## Required Libraries
+```
+time
+os
+gTTS
+pyglet
 ```
